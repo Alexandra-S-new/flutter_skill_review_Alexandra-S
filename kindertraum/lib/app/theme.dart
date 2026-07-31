@@ -6,7 +6,7 @@ abstract class AppTheme {
 
   static const Color backgroundColor = Color(0xFFF5F7F7);
   static const Color cardColor = Colors.white;
-  static const Color cardLightColor = Color(0xFFB2DFDB);
+  static const Color cardLightColor = Colors.white;
 
   static const Color successColor = Color(0xFF43A047);
   static const Color warningColor = Color(0xFFFB8C00);
@@ -37,7 +37,13 @@ abstract class AppTheme {
         bodyMedium: TextStyle(fontSize: 14),
         labelLarge: TextStyle(fontSize: 16),
       ),
-      cardTheme: CardThemeData(color: cardLightColor, elevation: 3),
+      cardTheme: CardThemeData(
+        color: cardLightColor,
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
       appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
         foregroundColor: cardColor,
@@ -45,6 +51,12 @@ abstract class AppTheme {
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
         foregroundColor: cardColor,
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: primaryColor,
+          foregroundColor: Colors.white,
+        ),
       ),
     );
   }
