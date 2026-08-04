@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kindertraum/models/toy.dart';
-import 'package:kindertraum/providers/cart_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:kindertraum/widgets/in_to_cart_button.dart';
 
 class ToyCard extends StatelessWidget {
   final Toy toy;
@@ -46,13 +45,7 @@ class ToyCard extends StatelessWidget {
               Spacer(),
               SizedBox(
                 width: double.infinity,
-                child: FilledButton.icon(
-                  onPressed:
-                      onAddToCart ??
-                      () => context.read<CartProvider>().addToCart(toy),
-                  icon: const Icon(Icons.shopping_cart),
-                  label: const Text("In den Warenkorb"),
-                ),
+                child: InToCartButton(onAddToCart: onAddToCart),
               ),
             ],
           ),

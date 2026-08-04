@@ -15,9 +15,45 @@ class CartScreen extends StatelessWidget {
         title: const Text("Warenkorb"),
         actions: [
           IconButton(
-            onPressed: () {
-              context.read<CartProvider>().clearCart();
-            },
+            onPressed: cart.items.isEmpty
+                ? null
+                : () async {
+                    final shouldClear = await showDialog<bool>(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text("Warenkorb leeren"),
+                          content: const Text(
+                            "Möchtest du wirklich alle Artikel aus dem Warenkorb entfernen?",
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                              },
+                              child: const Text("Abbrechen"),
+                            ),
+                            FilledButton(
+                              onPressed: () {
+                                Navigator.pop(context, true);
+                              },
+                              child: const Text("Leeren"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
+                    if (shouldClear == true) {
+                      context.read<CartProvider>().clearCart();
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Der Warenkorb wurde geleert."),
+                        ),
+                      );
+                    }
+                  },
             icon: Icon(
               Icons.delete_forever,
               size: 32,

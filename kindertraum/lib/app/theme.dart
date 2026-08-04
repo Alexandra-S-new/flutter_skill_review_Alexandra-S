@@ -62,7 +62,14 @@ abstract class AppTheme {
         style: FilledButton.styleFrom(
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
+          //minimumSize: const Size(double.infinity, 48),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }
@@ -76,7 +83,13 @@ abstract class AppTheme {
       ),
       scaffoldBackgroundColor: darkBackgroundColor,
 
-      cardTheme: const CardThemeData(color: cardDarkColor, elevation: 3),
+      cardTheme: CardThemeData(
+        color: cardDarkColor,
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
       appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
         foregroundColor: textDarkColor,
@@ -93,6 +106,19 @@ abstract class AppTheme {
         bodyLarge: TextStyle(fontSize: 16),
         bodyMedium: TextStyle(fontSize: 14),
         labelLarge: TextStyle(fontSize: 16),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          /*  backgroundColor: primaryColor,
+          foregroundColor: Colors.white, 
+          minimumSize: const Size(double.infinity, 48),*/
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }

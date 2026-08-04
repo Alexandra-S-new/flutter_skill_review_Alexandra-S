@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kindertraum/models/toy.dart';
 import 'package:kindertraum/widgets/detail_selection.dart';
+import 'package:kindertraum/widgets/in_to_cart_button.dart';
 import 'package:kindertraum/widgets/rating_stars.dart';
 
 class ToyDetailContent extends StatelessWidget {
@@ -74,11 +75,7 @@ class ToyDetailContent extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              child: FilledButton.icon(
-                onPressed: onAddToCart,
-                icon: const Icon(Icons.shopping_cart),
-                label: const Text("In den Warenkorb"),
-              ),
+              child: InToCartButton(onAddToCart: onAddToCart),
             ),
           ],
         ),

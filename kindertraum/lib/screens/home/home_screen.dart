@@ -121,33 +121,44 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 280,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 0.75,
-                ),
-                itemCount: filteredToys.length,
-                itemBuilder: (context, index) {
-                  final toy = filteredToys[index];
-                  return ToyCard(
-                    toy: toy,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ToyDetailScreen(toy: toy),
-                        ),
-                      );
-                    },
-                    onAddToCart: () {
-                      context.read<CartProvider>().addToCart(toy);
-                    },
-                  );
-                },
-              ),
+              child: filteredToys.isEmpty
+                  ? const Center(
+                      child: Text(
+                        "Keine Spielzeuge gefunden.",
+                      ),
+                    )
+                  : GridView.builder(
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 280,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemCount: filteredToys.length,
+                      itemBuilder: (context, index) {
+                        final toy = filteredToys[index];
+                        return ToyCard(
+                          toy: toy,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ToyDetailScreen(toy: toy),
+                              ),
+                            );
+                          },
+                          onAddToCart: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('${toy.title} hinzugefügt'),
+                                duration: Duration(seconds: 1),
+                              ),
+                            );
+                            context.read<CartProvider>().addToCart(toy);
+                          },
+                        );
+                      },
+                    ),
             ),
           ),
         ],

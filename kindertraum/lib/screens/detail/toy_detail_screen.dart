@@ -19,6 +19,12 @@ class ToyDetailScreen extends StatelessWidget {
       body: ToyDetailContent(
         toy: toy,
         onAddToCart: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('${toy.title} hinzugefügt'),
+              duration: Duration(seconds: 1),
+            ),
+          );
           context.read<CartProvider>().addToCart(toy);
         },
       ),
