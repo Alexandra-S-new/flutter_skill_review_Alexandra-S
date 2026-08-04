@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:kindertraum/services/preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
+
   ThemeMode get themeMode => _themeMode;
 
-  void toggleTheme(bool isDark) {
-    _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-    notifyListeners();
-  }
+  bool get isDarkMode => _themeMode == ThemeMode.dark;
 
-  /* 
   Future<void> loadTheme() async {
-    final isDark = await PreferencesTodo.loadDarkMode();
+    final isDark = await Preferences.loadDarkMode();
 
     _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
 
     notifyListeners();
   }
 
-  void setThemeMode() async {
-    if (_themeMode == ThemeMode.light) {
-      _themeMode = ThemeMode.dark;
-    } else {
-      _themeMode = ThemeMode.light;
-    }
-    await PreferencesTodo.setDarkMode(_themeMode == ThemeMode.dark);
+  Future<void> toggleTheme() async {
+    _themeMode = _themeMode == ThemeMode.light
+        ? ThemeMode.dark
+        : ThemeMode.light;
+
+    await Preferences.setDarkMode(isDarkMode);
+
     notifyListeners();
-  } */
+  }
 }

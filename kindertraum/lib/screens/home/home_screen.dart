@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kindertraum/data/demoToys.dart';
 import 'package:kindertraum/models/toy.dart';
 import 'package:kindertraum/providers/cart_provider.dart';
+import 'package:kindertraum/providers/theme_provider.dart';
 import 'package:kindertraum/screens/detail/toy_detail_screen.dart';
 import 'package:kindertraum/widgets/cart_button.dart';
 import 'package:kindertraum/widgets/category_filter.dart';
@@ -73,20 +74,28 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              context.read<ThemeProvider>().toggleTheme();
+            },
+            icon: Icon(
+              context.watch<ThemeProvider>().isDarkMode
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+          ),
           CartButton(),
         ],
       ),
       body: Column(
         children: [
-          /*  Center(
-            child: Text("Willkommen im Kindertraum"),
-          ), */
           ToySearchBar(
             onChanged: (value) {
               currentSearch = value;
               filterToys();
             },
           ),
+          Text("Kategorien:"),
           CategoryFilter(
             categories: categories,
             selectedCategory: selectedCategory,
@@ -97,7 +106,18 @@ class _HomeScreenState extends State<HomeScreen> {
               filterToys();
             },
           ),
-
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                filteredToys.length == 1
+                    ? "1 Spielzeug gefunden"
+                    : "${filteredToys.length} Spielzeuge gefunden",
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -131,26 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-        /* ListView.builder(
-            itemCount: items.length,
-            itemBuilder: (BuildContext context, int index) {
-              final toy = items[index];
-              return ListTile();
-            
-            
-             trailing: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => DetailScreen(toy: demoToys.first),
-                  ),
-                );
-              },
-              child: Icon(Icons.access_alarm),
-            ), 
-            },
-          ),*/
       ),
     );
   }

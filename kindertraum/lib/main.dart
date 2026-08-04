@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:kindertraum/app/app.dart';
 import 'package:kindertraum/providers/cart_provider.dart';
+import 'package:kindertraum/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final themeProvider = ThemeProvider();
+  await themeProvider.loadTheme();
+
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => CartProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CartProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: themeProvider,
+        ),
+      ],
       child: const KindertraumApp(),
     ),
   );
