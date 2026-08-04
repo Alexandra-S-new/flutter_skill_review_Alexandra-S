@@ -50,4 +50,11 @@ class CartProvider extends ChangeNotifier {
       (sum, item) => sum + item.totalPrice,
     );
   }
+
+  int get itemCount {
+    return _items.fold(
+      0,
+      (sum, item) => sum + item.quantity,
+    );
+  }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kindertraum/data/demoToys.dart';
 import 'package:kindertraum/models/toy.dart';
 import 'package:kindertraum/providers/cart_provider.dart';
-import 'package:kindertraum/screens/cart/cart_screen.dart';
 import 'package:kindertraum/screens/detail/toy_detail_screen.dart';
+import 'package:kindertraum/widgets/cart_button.dart';
 import 'package:kindertraum/widgets/category_filter.dart';
 import 'package:kindertraum/widgets/search_bar.dart';
 import 'package:kindertraum/widgets/toy_card.dart';
@@ -73,17 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => CartScreen()),
-              );
-            },
-            icon: Icon(Icons.shopping_cart_outlined),
-          ),
-          if (cart.items.isNotEmpty)
-            Center(child: Text("${cart.items.length}")),
+          CartButton(),
         ],
       ),
       body: Column(

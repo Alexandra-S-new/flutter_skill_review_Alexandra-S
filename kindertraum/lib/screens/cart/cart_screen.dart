@@ -54,7 +54,7 @@ class CartScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Gesamtsumme:",
+                    "Gesamtsumme: ${cart.totalPriceAll.toStringAsFixed(2)} €",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
