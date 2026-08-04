@@ -15,7 +15,7 @@ abstract class AppTheme {
   static const Color textColor = Color(0xFF263238);
   static const Color cardDarkColor = Color(0xFF164E4A);
 
-  //DarkTheme
+  //DarkTheme Variablen
   static const Color darkBackgroundColor = Color(0xFF121212);
   static const Color darkCardColor = Color.fromARGB(255, 77, 77, 77);
 
@@ -44,9 +44,15 @@ abstract class AppTheme {
           borderRadius: BorderRadius.circular(16),
         ),
       ),
+
       appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
         foregroundColor: cardColor,
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
@@ -72,8 +78,13 @@ abstract class AppTheme {
 
       cardTheme: const CardThemeData(color: cardDarkColor, elevation: 3),
       appBarTheme: const AppBarTheme(
-        backgroundColor: cardDarkColor,
+        backgroundColor: primaryColor,
         foregroundColor: textDarkColor,
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       textTheme: TextTheme(
         displayLarge: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),

@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:kindertraum/models/toy.dart';
-import 'package:kindertraum/providers/cart_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:kindertraum/widgets/detail_selection.dart';
+import 'package:kindertraum/widgets/rating_stars.dart';
 
-class ToyCard extends StatelessWidget {
+class ToyDetailContent extends StatelessWidget {
   final Toy toy;
-  final VoidCallback? onTap;
   final VoidCallback? onAddToCart;
 
-  const ToyCard({
+  const ToyDetailContent({
     super.key,
     required this.toy,
-    this.onTap,
     this.onAddToCart,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -37,19 +35,34 @@ class ToyCard extends StatelessWidget {
                 toy.title,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
+              Row(
+                children: [
+                  RatingStars(toy: toy),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    toy.rating.toStringAsFixed(1),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ],
+              ),
               Text(
                 "${toy.price.toStringAsFixed(2)} €",
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-
-              Text("Kategorie: ${toy.category}"),
-              Spacer(),
+              DetailSelection(
+                heading: 'Beschreibung',
+                content: "${toy.description}",
+              ),
+              DetailSelection(heading: "Kategorie", content: toy.category),
+              DetailSelection(heading: "Marke", content: toy.brand),
+              DetailSelection(heading: "Alter", content: "${toy.minAge}"),
+              const Spacer(),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
-                  onPressed:
-                      onAddToCart ??
-                      () => context.read<CartProvider>().addToCart(toy),
+                  onPressed: onAddToCart,
                   icon: const Icon(Icons.shopping_cart),
                   label: const Text("In den Warenkorb"),
                 ),

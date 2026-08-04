@@ -46,7 +46,7 @@ final List<Toy> demoToys = [
     imageUrl: '',
     brand: 'Ravensburger',
     minAge: 6,
-    rating: 4.9,
+    rating: 3.9,
     stock: 20,
   ),
   Toy(

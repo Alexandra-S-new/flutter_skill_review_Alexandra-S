@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:kindertraum/models/toy.dart';
+import 'package:kindertraum/providers/cart_provider.dart';
+import 'package:kindertraum/widgets/toy_detail_content.dart';
+import 'package:provider/provider.dart';
+
+class ToyDetailScreen extends StatelessWidget {
+  const ToyDetailScreen({super.key, required this.toy});
+  final Toy toy;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(toy.title)),
+      body: ToyDetailContent(
+        toy: toy,
+        onAddToCart: () {
+          context.read<CartProvider>().addToCart(toy);
+        },
+      ),
+
+      /*  Card(
+        child: Text('Preis: ${toy.price}€'),
+      ), */
+    );
+  }
+}
