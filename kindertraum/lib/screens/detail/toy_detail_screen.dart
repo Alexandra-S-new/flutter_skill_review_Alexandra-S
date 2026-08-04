@@ -22,10 +22,6 @@ class ToyDetailScreen extends StatelessWidget {
           context.read<CartProvider>().addToCart(toy);
         },
       ),
-
-      /*  Card(
-        child: Text('Preis: ${toy.price}€'),
-      ), */
     );
   }
 }
