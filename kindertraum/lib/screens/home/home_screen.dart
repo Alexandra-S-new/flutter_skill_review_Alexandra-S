@@ -9,6 +9,9 @@ import 'package:kindertraum/widgets/category_filter.dart';
 import 'package:kindertraum/widgets/search_bar.dart';
 import 'package:kindertraum/widgets/toy_card.dart';
 import 'package:provider/provider.dart';
+// Hauptseite der App.
+// Zeigt alle verfügbaren Spielzeuge,
+// inklusive Suche, Kategoriefilter und Warenkorbzugriff.
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     filteredToys = List.from(demoToys);
   }
 
+  // Filtert die Produktliste nach Suchbegriff und Kategorie.
   void filterToys() {
     final searchTerm = currentSearch.toLowerCase();
     setState(() {
@@ -46,14 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // Erstellt dynamisch eine Liste aller vorhandenen Kategorien.
   List<String> get categories {
     return ["Alle", ...demoToys.map((toy) => toy.category).toSet()];
   }
 
   @override
   Widget build(BuildContext context) {
-    final cart = context.watch<CartProvider>();
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 85,
@@ -129,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   : GridView.builder(
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 280,
+                        maxCrossAxisExtent: 300,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
                         childAspectRatio: 0.75,

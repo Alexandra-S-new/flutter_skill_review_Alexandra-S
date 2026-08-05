@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kindertraum/models/cart_item.dart';
 
+// Widget zur Darstellung eines einzelnen Warenkorb-Artikels.
+// Enthält Mengensteuerung und Entfernen-Funktion.
 class CartItemCard extends StatelessWidget {
   const CartItemCard({
     super.key,

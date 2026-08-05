@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kindertraum/widgets/category_chip.dart';
 
+// Zeigt alle verfügbaren Kategorien als Filter-Chips an.
 class CategoryFilter extends StatelessWidget {
   const CategoryFilter({
     super.key,

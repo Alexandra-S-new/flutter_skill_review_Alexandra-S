@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Zentrale Definition aller Farben und Theme-Einstellungen.
+// Enthält Light- und Dark-Theme der App.
 abstract class AppTheme {
   static const Color primaryColor = Color(0xFF00897B); // Teal
   static const Color secondaryColor = Color(0xFF80CBC4);

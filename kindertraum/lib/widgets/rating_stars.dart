@@ -11,7 +11,8 @@ class RatingStars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filledStars = toy.rating.floor();
+    final rating = toy.rating ?? 0.0;
+    final filledStars = rating.floor();
     final emptyStars = 5 - filledStars;
 
     return Text(

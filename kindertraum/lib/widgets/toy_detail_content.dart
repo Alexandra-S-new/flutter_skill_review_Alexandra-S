@@ -44,7 +44,7 @@ class ToyDetailContent extends StatelessWidget {
                         RatingStars(toy: toy),
                         const SizedBox(width: 8),
                         Text(
-                          toy.rating.toStringAsFixed(1),
+                          toy.rating?.toStringAsFixed(1) ?? "Keine Bewertung",
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],
@@ -55,7 +55,8 @@ class ToyDetailContent extends StatelessWidget {
                     ),
                     DetailSelection(
                       heading: 'Beschreibung',
-                      content: "${toy.description}",
+                      content:
+                          toy.description ?? "Keine Beschreibung vorhanden",
                     ),
                     DetailSelection(
                       heading: "Kategorie",
@@ -67,7 +68,7 @@ class ToyDetailContent extends StatelessWidget {
                     ),
                     DetailSelection(
                       heading: "Alter",
-                      content: "${toy.minAge}",
+                      content: "Ab ${toy.minAge} Jahren",
                     ),
                   ],
                 ),
