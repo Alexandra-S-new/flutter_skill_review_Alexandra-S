@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kindertraum/providers/cart_provider.dart';
+import 'package:kindertraum/screens/checkout/checkout_screen.dart';
 import 'package:kindertraum/widgets/cart_item_card.dart';
 import 'package:provider/provider.dart';
 
@@ -92,6 +93,21 @@ class CartScreen extends StatelessWidget {
                   child: Text(
                     "Gesamtsumme: ${cart.totalPriceAll.toStringAsFixed(2)} €",
                     style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => CheckoutScreen()),
+                        );
+                      },
+                      child: Text("Zur Kasse"),
+                    ),
                   ),
                 ),
               ],
